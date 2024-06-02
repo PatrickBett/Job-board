@@ -5,7 +5,7 @@ import Register from "./Components/Register";
 import Navbar from "./Components/Navbar";
 import Home from "./Components/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import Protected from "./Components/Protected";
 function App() {
   return (
     <>
@@ -15,7 +15,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="jobs" element={<Home />} />
+          <Route path="jobs" element={<Protected>{<Home />}</Protected>} />
         </Routes>
       </BrowserRouter>
     </>

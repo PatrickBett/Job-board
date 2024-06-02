@@ -25,9 +25,7 @@ function Login() {
         </button>
       </form>
       <div>
-        <a>
-          Don't have an Account yet? <Link to="/register">Sign up Here</Link>
-        </a>
+        Don't have an Account yet? <Link to="/register">Sign up Here</Link>
       </div>
     </div>
   );

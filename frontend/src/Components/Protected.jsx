@@ -45,12 +45,11 @@ function Protected({ children }) {
       }
     }
   };
-}
+  if (isauthorized == null) {
+    return <div>Loading...</div>;
+  }
 
-if (isauthorized == null) {
-  return <div>Loading...</div>;
+  return isauthorized ? children : <Navigate to="/login" />;
 }
-
-return isauthorized ? children : <Navigate to="login" />;
 
 export default Protected;
