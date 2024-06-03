@@ -36,7 +36,12 @@ function App() {
             path="register"
             element={<Register setIsLoggedIn={setIsLoggedIn} />}
           />
-          <Route path="jobs" element={<Protected>{<Home />}</Protected>} />
+          <Route
+            path="jobs"
+            element={
+              <Protected setIsLoggedIn={setIsLoggedIn}>{<Home />}</Protected>
+            }
+          />
           <Route path="logout" element={<Navigate to="/login" />} />
         </Routes>
       </BrowserRouter>

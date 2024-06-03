@@ -4,7 +4,7 @@ import api from "../api";
 import { Navigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
-function Protected({ children }) {
+function Protected({ children, setIsLoggedIn }) {
   const [isauthorized, setIsAuthorized] = useState(null);
 
   useEffect(() => {
@@ -40,8 +40,10 @@ function Protected({ children }) {
 
       if (tokenExpiration < now) {
         await tokenRefresh();
+        setIsLoggedIn(false);
       } else {
         setIsAuthorized(true);
+        setIsLoggedIn(true);
       }
     }
   };
