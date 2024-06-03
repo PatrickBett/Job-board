@@ -9,6 +9,9 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const [error, setError] = useState("");
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -23,7 +26,7 @@ function Register() {
 
       navigate("/login");
     } catch (error) {
-      alert(error);
+      setError("Provide all input fields");
     }
   };
 
@@ -107,6 +110,7 @@ function Register() {
             SignUp
           </button>
         </form>
+        {error && <div className="alert alert-danger">{error}</div>}
         Already have an account? <Link to="/login">Sign in Here</Link>
       </div>
     </>
