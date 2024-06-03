@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ isLoggedIn, onLogout }) {
   return (
     <>
       <nav className="navbar navbar-expand-sm bg-dark  ">
@@ -22,21 +22,40 @@ function Navbar() {
           {/* target */}
           <div className="collapse navbar-collapse" id="collapsibleNavbar">
             <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <Link className="nav-link fw-bolder text-white" to="/register">
-                  Sign Up
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link fw-bolder text-white" to="/login">
-                  Sign In
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link fw-bolder text-white" to="/jobs">
-                  Jobs
-                </Link>
-              </li>
+              {isLoggedIn ? (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link fw-bolder text-white" to="/jobs">
+                      Jobs
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link fw-bolder text-white"
+                      to="/logout"
+                      onClick={onLogout}
+                    >
+                      logout
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link fw-bolder text-white"
+                      to="/register"
+                    >
+                      Sign Up
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link fw-bolder text-white" to="/login">
+                      Sign In
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>

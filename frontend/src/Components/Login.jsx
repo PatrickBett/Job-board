@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../api";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 
-function Login() {
+function Login({ setIsLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -11,13 +11,14 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
       const res = await api.post("/api/token/", { username, password });
       const token = res.data.access;
       localStorage.clear();
       localStorage.setItem(ACCESS_TOKEN, token);
       localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-
+      setIsLoggedIn(true);
       navigate("/jobs");
     } catch (error) {
       setError("Invalid Username or Password");
