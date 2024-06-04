@@ -46,7 +46,7 @@ function Navbar({ isLoggedIn, onLogout }) {
                         className="rounded-circle img-fluid custom-size"
                       ></img>
                     </Link>
-                    <ul class="dropdown-menu bg-dark border-0 ">
+                    <ul className="dropdown-menu bg-dark border-0 ">
                       <li className="nav-item ">
                         <Link
                           className="nav-link fs-6 fw-bolder text-white "
