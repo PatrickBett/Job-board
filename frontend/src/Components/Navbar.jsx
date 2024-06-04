@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./navbar.css";
 
 function Navbar({ isLoggedIn, onLogout }) {
   return (
@@ -12,7 +13,7 @@ function Navbar({ isLoggedIn, onLogout }) {
 
           <button
             type="button"
-            className="navbar-toggler "
+            className="navbar-toggler bg-light "
             data-bs-target="#collapsibleNavbar"
             data-bs-toggle="collapse"
           >
@@ -20,23 +21,50 @@ function Navbar({ isLoggedIn, onLogout }) {
           </button>
 
           {/* target */}
-          <div className="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul className="navbar-nav ms-auto">
+          <div className="collapse navbar-collapse mx-5" id="collapsibleNavbar">
+            {/* ms-auto */}
+            <ul className="navbar-nav ms-auto ">
               {isLoggedIn ? (
                 <>
-                  <li className="nav-item">
-                    <Link className="nav-link fw-bolder text-white" to="/jobs">
-                      Jobs
+                  <li className="nav-item me-5">
+                    <Link
+                      className="nav-link fw-bolder fs-5 text-white"
+                      to="/jobs"
+                    >
+                      Job Listing
                     </Link>
                   </li>
-                  <li className="nav-item">
+
+                  <li className="nav-item dropdown me-3">
                     <Link
-                      className="nav-link fw-bolder text-white"
-                      to="/logout"
-                      onClick={onLogout}
+                      className="nav-link dropdown-toggle "
+                      role="button"
+                      data-bs-toggle="dropdown"
                     >
-                      logout
+                      <img
+                        src="https://st5.depositphotos.com/36741118/67793/i/380/depositphotos_677933158-stock-photo-older-european-man-good-mood.jpg"
+                        className="rounded-circle img-fluid custom-size"
+                      ></img>
                     </Link>
+                    <ul class="dropdown-menu bg-dark border-0 ">
+                      <li className="nav-item ">
+                        <Link
+                          className="nav-link fs-6 fw-bolder text-white "
+                          to=""
+                        >
+                          profile
+                        </Link>
+                      </li>
+                      <li className="nav-item" id="profile">
+                        <Link
+                          className="nav-link fs-6 fw-bolder text-white "
+                          to="/logout"
+                          onClick={onLogout}
+                        >
+                          logout
+                        </Link>
+                      </li>
+                    </ul>
                   </li>
                 </>
               ) : (

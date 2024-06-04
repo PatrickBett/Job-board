@@ -4,7 +4,14 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className="container border shadow">
-      <h1>Jobs you might like</h1>
+      <form class="d-flex mx-5 mt-5">
+        <input class="form-control me-2" type="text" placeholder="Search" />
+        <button class="btn btn-primary me-4" type="button">
+          Search
+        </button>
+      </form>
+
+      <h2 className="my-3">Jobs you might like</h2>
 
       <ul className="list-unstyled">
         <li className="border px-4 py-2">
