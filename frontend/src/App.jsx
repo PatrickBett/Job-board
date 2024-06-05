@@ -9,16 +9,14 @@ import Protected from "./Components/Protected";
 import { Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { ACCESS_TOKEN } from "./constants";
-// import { useNavigate } from "react-router-dom";
+import Community from "./Components/Community";
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.clear();
     setIsLoggedIn(false);
-
-    // navigate("/login");
   };
 
   return (
@@ -40,6 +38,14 @@ function App() {
             path="jobs"
             element={
               <Protected setIsLoggedIn={setIsLoggedIn}>{<Home />}</Protected>
+            }
+          />
+          <Route
+            path="community"
+            element={
+              <Protected setIsLoggedIn={setIsLoggedIn}>
+                {<Community />}
+              </Protected>
             }
           />
           <Route path="logout" element={<Navigate to="/login" />} />

@@ -26,10 +26,10 @@ function Login({ setIsLoggedIn }) {
   };
 
   return (
-    <div className="container">
+    <div className="container mt-5">
       <h3 className="text-center">Sign In</h3>
 
-      <form className="shadow rounded mt-2 px-5 py-4" onSubmit={handleLogin}>
+      <form className="shadow rounded mt-5 px-5 py-4" onSubmit={handleLogin}>
         <div className="mb-3">
           <label htmlFor="username" className="form-label">
             Enter Username

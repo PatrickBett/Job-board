@@ -5,9 +5,9 @@ import "./navbar.css";
 function Navbar({ isLoggedIn, onLogout }) {
   return (
     <>
-      <nav className="navbar navbar-expand-sm bg-dark  ">
+      <nav className="navbar navbar-expand-sm   ">
         <div className="container-fluid ">
-          <Link className="navbar-brand fw-bolder text-white" to="/">
+          <Link className="navbar-brand fw-bolder " to="/">
             Mega-Jobs
           </Link>
 
@@ -27,11 +27,14 @@ function Navbar({ isLoggedIn, onLogout }) {
               {isLoggedIn ? (
                 <>
                   <li className="nav-item me-5">
-                    <Link
-                      className="nav-link fw-bolder fs-5 text-white"
-                      to="/jobs"
-                    >
+                    <Link className="nav-link fw-bolder fs-5 " to="/jobs">
                       Job Listing
+                    </Link>
+                  </li>
+
+                  <li className="nav-item me-5">
+                    <Link className="nav-link fw-bolder fs-5 " to="/community">
+                      Community
                     </Link>
                   </li>
 
@@ -46,18 +49,15 @@ function Navbar({ isLoggedIn, onLogout }) {
                         className="rounded-circle img-fluid custom-size"
                       ></img>
                     </Link>
-                    <ul className="dropdown-menu bg-dark border-0 ">
+                    <ul className="dropdown-menu  border-0 ">
                       <li className="nav-item ">
-                        <Link
-                          className="nav-link fs-6 fw-bolder text-white "
-                          to=""
-                        >
+                        <Link className="nav-link fs-6 fw-bolder  " to="">
                           profile
                         </Link>
                       </li>
                       <li className="nav-item" id="profile">
                         <Link
-                          className="nav-link fs-6 fw-bolder text-white "
+                          className="nav-link fs-6 fw-bolder "
                           to="/logout"
                           onClick={onLogout}
                         >
@@ -70,15 +70,12 @@ function Navbar({ isLoggedIn, onLogout }) {
               ) : (
                 <>
                   <li className="nav-item">
-                    <Link
-                      className="nav-link fw-bolder text-white"
-                      to="/register"
-                    >
+                    <Link className="nav-link fw-bolder" to="/register">
                       Sign Up
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link fw-bolder text-white" to="/login">
+                    <Link className="nav-link fw-bolder" to="/login">
                       Sign In
                     </Link>
                   </li>

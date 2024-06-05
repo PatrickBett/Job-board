@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import "./home.css";
 
 function Home() {
   const [jobs, setJobs] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const toggleFavorite = () => {
+    setIsFavorite((prevState) => !prevState);
+  };
 
   useEffect(() => {
     handleFetch();
@@ -19,7 +26,7 @@ function Home() {
     }
   };
   return (
-    <div className="container border shadow">
+    <div className="container-fluid border shadow">
       <form className="d-flex mx-5 my-5 ">
         <input className="form-control me-2" type="text" placeholder="Search" />
         <button className="btn btn-primary me-4" type="button">
@@ -30,16 +37,45 @@ function Home() {
       <ul className="list-unstyled">
         {jobs.map((job, index) => (
           <li className="border px-4 py-2" key={index}>
-            <h3>{job.title}</h3>
+            <div className="row">
+              <div className="col-11">
+                <h3>{job.title}</h3>
+              </div>
+              <div className="col-1">
+                <FavoriteBorderIcon style={{ color: "green" }} />
+                {/* {isFavorite ? (
+                  <FavoriteBorderIcon
+                    style={{ color: "green" }}
+                    onClick={toggleFavorite}
+                  />
+                ) : (
+                  <FavoriteBorderIcon
+                    style={{ color: "red" }}
+                    onClick={toggleFavorite}
+                  />
+                )} */}
+              </div>
+            </div>
             <p>{job.description}</p>
-            <p className="fw-bolder">Budget ${job.budget}</p>
-            <div className="row align-items-center my-3">
-              <div className="col-12 col-md-6">
+            <div className="row">
+              <div className="col-4">
+                <p className="fw-bolder">Budget ${job.budget}</p>
+              </div>
+              <div className="col-4">
+                <p className="fw-bolder">Location</p> {job.location}
+              </div>
+              <div className="col-4">
+                <p className="fw-bolder">Company</p> {job.company}
+              </div>
+            </div>
+
+            <div className="row mt-5 mb-3">
+              <div className="col-6 ">
                 <Link to="/job/apply">
                   <button className="btn btn-success w-100">Apply Now</button>
                 </Link>
               </div>
-              <div className="col-12 col-md-6 text-md-right text-center mt-3 mt-md-0">
+              <div className="col-6  text-md-right text-center mt-3 mt-md-0">
                 <span className="text-muted">Posted {job.date_created}</span>
               </div>
             </div>
