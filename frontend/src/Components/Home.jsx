@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import api from "../api";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import "./home.css";
+import Form from "./Form";
 
 function Home() {
   const [jobs, setJobs] = useState([]);
@@ -27,12 +28,7 @@ function Home() {
   };
   return (
     <div className="container-fluid border shadow">
-      <form className="d-flex mx-5 my-5 ">
-        <input className="form-control me-2" type="text" placeholder="Search" />
-        <button className="btn btn-primary me-4" type="button">
-          Search
-        </button>
-      </form>
+      <Form />
 
       <ul className="list-unstyled">
         {jobs.map((job, index) => (
