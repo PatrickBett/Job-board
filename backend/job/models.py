@@ -30,3 +30,15 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment[:20]
+    
+class Application(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="applications")
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="jobs")
+    cv = models.FileField(upload_to='cv/')
+    resume = models.FileField(upload_to='resume/')
+    cover_letter = models.FileField(upload_to='cover/')
+    aob = models.TextField(max_length=500)
+    date_applied = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.user.username

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Job,Comment,Post
+from .models import Job,Comment,Post,Application
 
 # Register your models here.
 
@@ -32,3 +32,12 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ('date_created',)
 
 admin.site.register(Comment, CommentAdmin)
+
+class ApplicationAdmin(admin.ModelAdmin):
+    
+    list_display = ('user','job','resume')
+
+    
+    list_filter = ('date_applied',)
+
+admin.site.register(Application, ApplicationAdmin)
