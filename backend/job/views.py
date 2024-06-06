@@ -23,8 +23,5 @@ class UserCreateAPIView (generics.CreateAPIView):
 class PostCreateListAPIView (generics.ListCreateAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
-    def get_queryset(self):
-        user = self.request.user
-        return Post.objects.filter(user = user)
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    queryset = Post.objects.all()
+    

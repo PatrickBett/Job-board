@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./community.css";
 import Form from "./Form";
 import api from "../api";
@@ -6,6 +6,22 @@ import Post from "./Post";
 
 function Community() {
   const [content, setContent] = useState("");
+  const [posts, setPost] = useState([]);
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
+  const getPosts = async () => {
+    try {
+      const res = await api.get("/api/posts/");
+      setPost(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    }
+  };
 
   const createNewPost = async (e) => {
     e.preventDefault();
@@ -21,14 +37,14 @@ function Community() {
   };
 
   return (
-    <div className="container-fluid border ">
+    <div className="container border ">
       <div className="row">
-        <div className="col-9">
+        <div className="col-8">
           <Form />
         </div>
-        <div className="col-2">
+        <div className="col-4">
           <button
-            className="btn btn-success my-5"
+            className="btn btn-success my-2"
             data-bs-target="#mymodal"
             data-bs-toggle="modal"
           >
@@ -77,8 +93,8 @@ function Community() {
           </div>
         </div>
       </div>
-      <div className="container border shadow mb-3">
-        <Post />
+      <div className="container border mb-3">
+        <Post posts={posts} />
       </div>
     </div>
   );
