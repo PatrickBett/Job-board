@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./community.css";
 import Form from "./Form";
 import api from "../api";
+import Post from "./Post";
 
 function Community() {
   const [content, setContent] = useState("");
@@ -20,7 +21,7 @@ function Community() {
   };
 
   return (
-    <div className="container-fluid border">
+    <div className="container-fluid border ">
       <div className="row">
         <div className="col-9">
           <Form />
@@ -75,6 +76,9 @@ function Community() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="container border shadow mb-3">
+        <Post />
       </div>
     </div>
   );
