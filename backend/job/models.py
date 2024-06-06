@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 class Job(models.Model):
@@ -13,5 +14,19 @@ class Job(models.Model):
     def __str__(self):
         return self.title
     
-# class Profile(models.Model):
-#     url = models.
+class Post(models.Model):
+    user = models.ForeignKey(User,on_delete= models.CASCADE,  related_name="posts")
+    content = models.TextField()
+    date_created = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.content[:20]
+    
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    user = models.ForeignKey(User,on_delete= models.CASCADE,  related_name="comment")
+    comment = models.TextField()
+    date_created = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.comment[:20]
