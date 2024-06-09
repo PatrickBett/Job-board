@@ -6,6 +6,9 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShareIcon from "@mui/icons-material/Share";
 import CommentIcon from "@mui/icons-material/Comment";
 import "./community.css";
+import Commentinput from "./Commentinput";
+
+import { useState } from "react";
 function Post({ posts }) {
   return (
     <>
@@ -32,24 +35,54 @@ function Post({ posts }) {
               <p>{post.content}</p>
             </div>
             <div className="row">
-              <div className="col-10">
+              <div className="col-12">
                 <button className="btn border-0 me-1">
                   <FavoriteBorderIcon className="me-2" />
-                  <span>Likes</span>
+                  Likes
                 </button>
-                <button className="btn border-0 me-1">
+
+                <button
+                  className="btn border-0 me-1"
+                  data-bs-toggle="modal"
+                  data-bs-target="#commentmodal"
+                >
                   <CommentIcon className="me-2" />
-                  <span>Comments</span>
+                  Comments
                 </button>
                 <button className="btn border-0 ">
                   <ShareIcon className="me-2" />
-                  <span>Share</span>
+                  Share
                 </button>
               </div>
             </div>
           </li>
         ))}
       </ul>
+
+      {/* Comment Modal */}
+
+      <div className="modal" id="commentmodal">
+        <div className="modal-dialog modal-lg">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2 className="modal-title">Community & Jobs in tech</h2>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <Commentinput />
+            </div>
+            <div className="modal-footer">
+              <button className="btn-danger" data-bs-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
