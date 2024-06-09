@@ -65,18 +65,20 @@ function Post({ posts }) {
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-header">
-              <h2 className="modal-title">Community & Jobs in tech</h2>
+              <h2 className="modal-title text-center">
+                Community & Jobs in tech
+              </h2>
               <button
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
-              ></button>
+              />
             </div>
             <div className="modal-body">
-              <Commentinput />
+              <Commentinput posts={posts} />
             </div>
             <div className="modal-footer">
-              <button className="btn-danger" data-bs-dismiss="modal">
+              <button className="btn btn-danger" data-bs-dismiss="modal">
                 Close
               </button>
             </div>
