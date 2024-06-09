@@ -9,6 +9,16 @@ function Home() {
   const [jobs, setJobs] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const handleApplication = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await api.post("/api/application/", {});
+      alert("Application successful");
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   const toggleFavorite = () => {
     setIsFavorite((prevState) => !prevState);
   };
@@ -67,9 +77,13 @@ function Home() {
 
             <div className="row mt-5 mb-3">
               <div className="col-6 ">
-                <Link to="/job/apply">
-                  <button className="btn btn-success w-100">Apply Now</button>
-                </Link>
+                <button
+                  className="btn btn-success w-100"
+                  data-bs-target="#mymodal"
+                  data-bs-toggle="modal"
+                >
+                  Apply Now
+                </button>
               </div>
               <div className="col-6  text-md-right text-center mt-3 mt-md-0">
                 <span className="text-muted">Posted {job.date_created}</span>
@@ -78,6 +92,41 @@ function Home() {
           </li>
         ))}
       </ul>
+
+      <div className="modal" id="mymodal">
+        <div className="modal-dialog modal-md">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title">Add Post</h1>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <form onSubmit={handleApplication}>
+                <label htmlFor="resume">Upload Resume</label>
+                <input type="file" className="form-control" />
+                <label htmlFor="cv">Upload CV</label>
+                <input type="file" className="form-control" />
+                <label htmlFor="cover">Upload Cover letter</label>
+                <input type="file" className="form-control" />
+                <label htmlFor="aob">Any Other Comment</label>
+                <textarea rows="4" className="form-control" />
+                <div className="modal-footer">
+                  <button type="submit" className="btn btn-primary">
+                    Save
+                  </button>
+                  <button className="btn btn-danger" data-bs-dismiss="modal">
+                    Close
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

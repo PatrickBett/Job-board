@@ -1,5 +1,5 @@
-from .models import Job,Post
-from .serializer import JobSerializer, UserSerializer, PostSerializer
+from .models import Job,Post, Application
+from .serializer import JobSerializer, UserSerializer, PostSerializer, ApplicationSerializer
 from rest_framework import generics
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -24,4 +24,11 @@ class PostCreateListAPIView (generics.ListCreateAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
     queryset = Post.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
     
+class ApplicationCreateAPIView(generics.CreateAPIView):
+    serializer_class = ApplicationSerializer
+    permission_classes = [IsAuthenticated]
+    queryset = Application.objects.all()

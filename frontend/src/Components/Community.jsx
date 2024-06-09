@@ -6,7 +6,8 @@ import Post from "./Post";
 
 function Community() {
   const [content, setContent] = useState("");
-  const [posts, setPost] = useState([]);
+
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     getPosts();
@@ -15,7 +16,7 @@ function Community() {
   const getPosts = async () => {
     try {
       const res = await api.get("/api/posts/");
-      setPost(res.data);
+      setPosts(res.data);
       console.log(res.data);
     } catch (error) {
       console.log(error);
@@ -27,8 +28,11 @@ function Community() {
     e.preventDefault();
 
     try {
-      const res = await api.post("api/posts/", { content });
+      const res = await api.post("/api/posts/", { content });
+      console.log(res.data);
+      setPosts([res.data, ...posts]); // Add the new post to the list
       setContent(""); // Clear the content after a successful post
+
       alert("Post added successfully");
     } catch (error) {
       alert("Error adding post");
@@ -93,7 +97,7 @@ function Community() {
           </div>
         </div>
       </div>
-      <div className="container border mb-3">
+      <div className="container mb-3">
         <Post posts={posts} />
       </div>
     </div>
