@@ -25,7 +25,7 @@ admin.site.register(Post, PostAdmin)
 
 class CommentAdmin(admin.ModelAdmin):
     
-    list_display = ('comment',)
+    list_display = ('comment','user','post')
     
     search_fields = ('content',)
     
