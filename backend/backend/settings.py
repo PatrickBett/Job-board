@@ -2,6 +2,15 @@
 
 from pathlib import Path
 import os
+
+
+
+
+# import environ
+
+# env =  environ.Env()
+# environ.Env.read_env()
+
 from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-u_afip6_oi-fy53cvgs+&im62t6m4w9k(sldpf2@s#cqn7xc@s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -66,12 +75,20 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+#
+#DATABASES = {
+    #'default': {
+   #     'ENGINE': 'django.db.backends.sqlite3',
+  #      'NAME': BASE_DIR / 'db.sqlite3',
+ #   }
+#}
+#
 
+
+# Render Postgress (Live)
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default':dj_database_url.parse('postgresql://test1_d8fi_user:8ubC5qQSAJ9iIGPgQvF5qWofS1wVEYCJ@dpg-crptc48gph6c73a35ltg-a.oregon-postgres.render.com/test1_d8fi')
 }
 
 

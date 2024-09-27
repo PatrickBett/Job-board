@@ -9,7 +9,7 @@ class Job(models.Model):
     budget = models.FloatField()
     location = models.CharField(max_length= 50,default="Nairobi")
     company = models.CharField(max_length=30, default="Safaricom")
-    date_created = models.DateTimeField(auto_now_add = True)
+    time = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
         return self.title
@@ -17,7 +17,7 @@ class Job(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(User,on_delete= models.CASCADE,  related_name="posts")
     content = models.TextField()
-    date_created = models.DateTimeField(default=timezone.now)
+    time = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.content[:20]
@@ -26,7 +26,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
     user = models.ForeignKey(User,on_delete= models.CASCADE,  related_name="comment")
     comment = models.TextField()
-    date_created = models.DateTimeField(default=timezone.now)
+    time = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.comment[:20]
@@ -38,7 +38,7 @@ class Application(models.Model):
     resume = models.FileField(upload_to='resume/')
     cover_letter = models.FileField(upload_to='cover/')
     aob = models.TextField(max_length=500)
-    date_applied = models.DateTimeField(default=timezone.now)
+    time = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.user.username

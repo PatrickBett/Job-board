@@ -9,7 +9,7 @@ class JobAdmin(admin.ModelAdmin):
     # it creates a search button on the admin page where you can search based on the list you give below
     search_fields = ('title',)
     # The list_filter attribute adds a filter sidebar to the admin interface, allowing you to filter the list view by the specified fields.
-    list_filter = ('date_created',)
+    list_filter = ('time',)
 
 admin.site.register(Job, JobAdmin)
 
@@ -19,7 +19,7 @@ class PostAdmin(admin.ModelAdmin):
     
     search_fields = ('content',)
     
-    list_filter = ('date_created',)
+    list_filter = ('time',)
 
 admin.site.register(Post, PostAdmin)
 
@@ -29,7 +29,7 @@ class CommentAdmin(admin.ModelAdmin):
     
     search_fields = ('content',)
     
-    list_filter = ('date_created',)
+    list_filter = ('time',)
 
 admin.site.register(Comment, CommentAdmin)
 
@@ -38,6 +38,6 @@ class ApplicationAdmin(admin.ModelAdmin):
     list_display = ('user','job','resume')
 
     
-    list_filter = ('date_applied',)
+    list_filter = ('time',)
 
 admin.site.register(Application, ApplicationAdmin)
